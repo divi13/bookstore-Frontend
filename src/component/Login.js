@@ -27,26 +27,26 @@ function Login() {
         const noErrors = Object.keys(errors).length===0;
         if(noErrors){
         
-        const payload = {
-            email: email,
-            password: password
-        }
+            const payload = {
+                email: email,
+                password: password
+            }
     
-        axios.post("http://localhost:8081/login", payload).then(resp => {
-            setCustomer(resp.data);
-            const obj = {
-                customerId: resp.data.customerId,
-                email: resp.data.email
-             }
-            localStorage.setItem("mytoken", JSON.stringify(obj));
-            alert("Login success");
-            navigate("/Home");
-       }).catch(error => {
-               alert("login failed")
-                setMsg(error.response.data);
+            axios.post("http://localhost:8081/login", payload).then(resp => {
+                setCustomer(resp.data);
+                const obj = {
+                    customerId: resp.data.customerId,
+                    email: resp.data.email
+                }
+                localStorage.setItem("mytoken", JSON.stringify(obj));
+                alert("Login success");
+                navigate("/Home");
+                }).catch(error => {
+                alert("login failed")
+                    setMsg(error.response.data);
             })
+        }
     }
-}
 
     return (
 
@@ -86,5 +86,6 @@ function Login() {
             </div>
         </div>
     );
-            }
+}
+
 export default Login;
